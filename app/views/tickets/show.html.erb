@@ -1,0 +1,6 @@
+<p>
+<%= @ticket.name %>
+<%= @ticket.price %>
+<%= link_to "book this", new_ticket_booking_path(@ticket) %>
+<%= link_to "back to index", tickets_path %>
+</p>

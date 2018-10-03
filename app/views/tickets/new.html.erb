@@ -1,0 +1,14 @@
+
+    <div class="form">
+      <div class="form-title">
+        <h2>Nouvelle question</h2>
+      </div>
+
+      <div class="form-content">
+        <%= simple_form_for [@ticket] do |f| %>
+          <%= f.input :name, label: 'Name of the night?', placeholder: 'emotr?' %>
+          <%= f.input :price, label: 'Your price' %>
+          <%= f.button :submit, value: "Shine"%>
+        <% end %>
+      </div>
+    </div>
