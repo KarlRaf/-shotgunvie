@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
   def create
     @ticket = Ticket.find(params[:ticket_id])
     @booking = Booking.new(name: @ticket.name)
-    # @booking.status = "Pending"
+    @booking.status = "Pending"
     @booking.ticket = @ticket
     @booking.user = current_user
     if @booking.save
@@ -48,20 +48,20 @@ class BookingsController < ApplicationController
   end
 
   # CHANGED TO VALIDATE USER DIRECTLY FROM INDEX
-  # def validates_user
-  #   @booking = Booking.find(params[:id])
-  #   @booking.status = "Accepted"
-  #   @booking.save
-  #   redirect_to bookings_path
-  # end
+  def confirm_sale
+    @booking = Booking.find(params[:id])
+    @booking.status = "Ticket receivd"
+    @booking.save
+    redirect_to bookings_path
+  end
 
-  # # NOT IN USE
-  # def refuses_user
-  #   @booking = Booking.find(params[:id])
-  #   @booking.status = "Declined"
-  #   @booking.save
-  #   redirect_to bookings_path
-  # end
+  # NOT IN USE
+  def refuses_user
+    @booking = Booking.find(params[:id])
+    @booking.status = "Declined"
+    @booking.save
+    redirect_to bookings_path
+  end
 
   private
 
