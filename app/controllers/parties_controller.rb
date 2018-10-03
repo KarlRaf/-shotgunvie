@@ -1,4 +1,4 @@
-class TicketsController < ApplicationController
+class PartiesController < ApplicationController
   before_action :set_ticket, only: [ :show, :update, :destroy, :edit ]
 
   def new
@@ -12,9 +12,8 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.name = @ticket.party.name
-    @ticket.date = @ticket.party.date
     @ticket.user = current_user
+
     if @ticket.save
       redirect_to ticket_path(@ticket)
     else
@@ -38,7 +37,7 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:price)
+    params.require(:ticket).permit(:name, :price, :date)
   end
 
   def set_ticket

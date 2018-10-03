@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_03_144641) do
+ActiveRecord::Schema.define(version: 2018_10_03_151903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_10_03_144641) do
     t.string "organizer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -41,6 +42,8 @@ ActiveRecord::Schema.define(version: 2018_10_03_144641) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parties_id"
+    t.index ["parties_id"], name: "index_tickets_on_parties_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -62,5 +65,6 @@ ActiveRecord::Schema.define(version: 2018_10_03_144641) do
 
   add_foreign_key "bookings", "tickets"
   add_foreign_key "bookings", "users"
+  add_foreign_key "tickets", "parties", column: "parties_id"
   add_foreign_key "tickets", "users"
 end
